@@ -9,9 +9,8 @@ const Nav = () => {
         <div className='flex items-center space-x-2'>
           <div className='w-10 h-10 bg-rose-500 rounded-full flex items-center justify-center flex-col'>
             <TbAirBalloon className='w-6 h-6 text-white'/>
-    
           </div>
-
+           <h1 className='text-xl md:text-2xl text-white uppercase font-bold'>Sky Nest Camp Ella </h1>
         </div>
       </div>
     </div>
