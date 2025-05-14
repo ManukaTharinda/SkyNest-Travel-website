@@ -4,9 +4,13 @@ import { navlinks } from '../../../constant/constatnt'
 import Link from 'next/link'
 import { HiBars3BottomRight } from 'react-icons/hi2'
 
-const Nav = () => {
+type props ={
+  openNav:()=>void
+}
+
+const Nav = ({openNav}:props) => {
   return (
-    <div className='bg-blue-950 transition duration-200 h-[12vh] z-[1000] sticky top-0'>
+    <div className='bg-blue-950 transition duration-200 h-[12vh] z-[1000] top-0 w-full fixed'>
       <div className='flex items-center h-full justify-between w-[90%] xl:w-[80%] mx-auto'>
         {/*logo */}
         <div className='flex items-center space-x-2'>
@@ -43,7 +47,7 @@ const Nav = () => {
           
           {/* hamburger menu - with proper spacing for small screens */}
           <div className='ml-2 sm:ml-4 lg:hidden flex items-center justify-center'>
-            <HiBars3BottomRight className='w-7 h-7 sm:w-8 sm:h-8 cursor-pointer text-white'/>
+            <HiBars3BottomRight onClick={openNav} className='w-7 h-7 sm:w-8 sm:h-8 cursor-pointer text-white'/>
           </div>
         </div>
       </div>
@@ -52,3 +56,6 @@ const Nav = () => {
 }
 
 export default Nav
+
+
+
