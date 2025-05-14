@@ -1,16 +1,50 @@
 import React from 'react'
 import { TbAirBalloon } from 'react-icons/tb'
+import { navlinks } from '../../../constant/constatnt'
+import Link from 'next/link'
+import { HiBars3BottomRight } from 'react-icons/hi2'
 
 const Nav = () => {
   return (
-    <div className='bg-blue-950 transistion-all duration-200 h-[12vh] z-[1000]'>
+    <div className='bg-blue-950 transition duration-200 h-[12vh] z-[1000] sticky top-0'>
       <div className='flex items-center h-full justify-between w-[90%] xl:w-[80%] mx-auto'>
         {/*logo */}
         <div className='flex items-center space-x-2'>
-          <div className='w-10 h-10 bg-rose-500 rounded-full flex items-center justify-center flex-col'>
-            <TbAirBalloon className='w-6 h-6 text-white'/>
+          <div className='w-8 h-8 sm:w-10 sm:h-10 bg-rose-500 rounded-full flex items-center justify-center flex-col'>
+            <TbAirBalloon className='w-5 h-5 sm:w-6 sm:h-6 text-white'/>
           </div>
-           <h1 className='text-xl md:text-2xl text-white uppercase font-bold'>Sky Nest Camp Ella </h1>
+          <h1 className='text-lg sm:text-xl md:text-2xl text-white uppercase font-bold truncate'>Sky Nest Camp Ella</h1>
+        </div>
+        
+        {/* Nav Link */}
+        <div className='hidden lg:flex items-center space-x-10'>
+          {navlinks.map((link) => (
+            <Link href={link.url} key={link.id}>
+              <p className='relative text-white text-base font-medium w-fit block cursor-pointer px-2 py-1
+              hover:text-yellow-300 transition-colors duration-300 group'>
+                {link.label}
+                <span className='absolute left-0 right-0 bottom-0 h-[3px] bg-yellow-400 transform
+                 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-400 ease-out'></span>
+              </p>
+            </Link>
+          ))}
+        </div>
+        
+        {/* button and hamburger menu container */}
+        <div className='flex items-center'>
+          {/* Book Now button */}
+          <button 
+            className='px-6 py-1.5 sm:py-2 sm:px-8 md:px-12 md:py-2.5 bg-white text-blue-950 text-sm sm:text-base font-medium rounded-md
+            transition-all duration-300 hover:bg-gray-100 hover:shadow-lg hover:shadow-white/30
+            active:scale-95 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-950 border border-transparent hover:border-gray-200'
+          >
+            Book Now
+          </button>
+          
+          {/* hamburger menu - with proper spacing for small screens */}
+          <div className='ml-2 sm:ml-4 lg:hidden flex items-center justify-center'>
+            <HiBars3BottomRight className='w-7 h-7 sm:w-8 sm:h-8 cursor-pointer text-white'/>
+          </div>
         </div>
       </div>
     </div>
