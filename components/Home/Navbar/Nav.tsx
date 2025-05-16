@@ -1,16 +1,29 @@
-import React from 'react'
-import { TbAirBalloon } from 'react-icons/tb'
-import { navlinks } from '../../../constant/constatnt'
-import Link from 'next/link'
-import { HiBars3BottomRight } from 'react-icons/hi2'
+'use client';
+import React, { useEffect, useState } from 'react';
+import { TbAirBalloon } from 'react-icons/tb';
+import { navlinks } from '../../../constant/constatnt';
+import Link from 'next/link';
+import { HiBars3BottomRight } from 'react-icons/hi2';
 
-type props ={
-  openNav:()=>void
-}
+type props = {
+  openNav: () => void;
+};
 
-const Nav = ({openNav}:props) => {
+const Nav = ({ openNav }: props) => {
+  const [navBg, setNavBg] = useState(false);
+  
+  useEffect(() => {
+    const handler = () => {
+      if (window.scrollY >= 90) setNavBg(true);
+      if (window.scrollY < 90) setNavBg(false);
+    };
+    
+    window.addEventListener('scroll', handler);
+    return () => window.removeEventListener('scroll', handler);
+  }, []);
+
   return (
-    <div className='bg-blue-950 transition duration-200 h-[12vh] z-[1000] top-0 w-full fixed'>
+    <div className={`${navBg ? 'bg-blue-950 shadow-md' : 'fixed'} transition duration-200 h-[12vh] z-[1000] top-0 w-full fixed`}>
       <div className='flex items-center h-full justify-between w-[90%] xl:w-[80%] mx-auto'>
         {/*logo */}
         <div className='flex items-center space-x-2'>
@@ -37,7 +50,7 @@ const Nav = ({openNav}:props) => {
         {/* button and hamburger menu container */}
         <div className='flex items-center'>
           {/* Book Now button */}
-          <button 
+          <button
             className='px-6 py-1.5 sm:py-2 sm:px-8 md:px-12 md:py-2.5 bg-white text-blue-950 text-sm sm:text-base font-medium rounded-md
             transition-all duration-300 hover:bg-gray-100 hover:shadow-lg hover:shadow-white/30
             active:scale-95 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-950 border border-transparent hover:border-gray-200'
@@ -52,10 +65,7 @@ const Nav = ({openNav}:props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Nav
-
-
-
+export default Nav;
